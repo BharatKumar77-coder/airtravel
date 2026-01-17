@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 import { generatePNR } from '../utils/generatePNR.js';
 import { getFlightById } from './flightService.js';
 import { deductAmount, getWalletBalance } from './walletService.js';
-import { generateTicket } from './pdfService.js';
 import { AppError } from '../middleware/errorHandler.js';
 
 /**
@@ -11,7 +10,7 @@ import { AppError } from '../middleware/errorHandler.js';
  * @param {string} user_id - User identifier
  * @param {string} passenger_name - Passenger name
  * @param {string} flight_id - Flight identifier
- * @returns {Promise<Object>} Booking details with PDF path
+ * * @returns {Promise<Object>} Booking details
  */
 export const createBooking = async (user_id, passenger_name, flight_id) => {
     // 1. Get flight details with current price
@@ -34,18 +33,6 @@ export const createBooking = async (user_id, passenger_name, flight_id) => {
     const booking_id = nanoid(12);
     const pnr = generatePNR();
 
-    // 5. Generate PDF ticket
-    const pdfPath = await generateTicket({
-        pnr,
-        passenger_name,
-        airline: flight.airline,
-        flight_id: flight.flight_id,
-        departure_city: flight.departure_city,
-        arrival_city: flight.arrival_city,
-        final_price: finalPrice,
-        booked_at: new Date(),
-    });
-
     // 6. Create booking record
     const booking = await Booking.create({
         booking_id,
@@ -55,7 +42,6 @@ export const createBooking = async (user_id, passenger_name, flight_id) => {
         final_price: finalPrice,
         pnr,
         booked_at: new Date(),
-        pdf_path: pdfPath,
     });
 
     // Check if surge was applied
@@ -64,7 +50,6 @@ export const createBooking = async (user_id, passenger_name, flight_id) => {
     return {
         booking,
         surgeApplied,
-        pdfPath,
     };
 };
 

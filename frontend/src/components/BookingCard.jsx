@@ -1,6 +1,8 @@
 const BookingCard = ({ booking }) => {
     const handleDownload = () => {
-        window.open(`/api/download/${booking.pnr}`, '_blank');
+        window.open(
+            `${import.meta.env.VITE_API_BASE_URL}/download/${booking.pnr}`, 
+            '_blank');
     };
 
     return (

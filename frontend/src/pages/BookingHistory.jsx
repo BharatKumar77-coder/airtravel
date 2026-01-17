@@ -39,7 +39,9 @@ const BookingHistory = () => {
     };
 
     const handleDownload = (pnr) => {
-        window.open(`/api/download/${pnr}`, '_blank');
+        window.open(
+            `${import.meta.env.VITE_API_BASE_URL}/download/${pnr}`, 
+            '_blank');
     };
 
     const handleLogout = () => {

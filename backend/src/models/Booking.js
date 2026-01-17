@@ -35,7 +35,7 @@ const bookingSchema = new mongoose.Schema({
     },
     pdf_path: {
         type: String,
-        required: true,
+        required: null,
     },
 }, {
     timestamps: true,
