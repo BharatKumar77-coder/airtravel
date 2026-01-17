@@ -27,12 +27,11 @@ app.use('/api', bookingRoutes);
 app.use('/api/auth', authRoutes);
 
 // Health check
-app.get('/health', (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'Server is running',
-        timestamp: new Date().toISOString(),
-    });
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    message: "Backend is awake"
+  });
 });
 
 // Error handling middleware (must be last)
