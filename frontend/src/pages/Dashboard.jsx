@@ -36,7 +36,7 @@ const Dashboard = () => {
     const loadWalletBalance = async () => {
         try {
             const response = await getWalletBalance();
-            // Backend returns { success: true, data: { balance: ... } }
+
             if (response.data && response.data.data) {
                 setWalletBalance(response.data.data.balance || 0);
             }
@@ -60,7 +60,7 @@ const Dashboard = () => {
 
         try {
             const response = await searchFlights(from, to);
-            // Axios response structure: response.data = { success: true, data: [...], meta: {...} }
+            
             if (response.data) {
                 setSearchResults(response.data.data || []);
                 setSearchMeta(response.data.meta);
@@ -124,7 +124,7 @@ const Dashboard = () => {
 
                             <button
                                 onClick={handleLogout}
-                                className="bg-white hover:bg-blue-50 text-[#0f172a] text-xs font-bold py-2.5 px-5 rounded-full uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                                className="bg-white hover:bg-blue-50 text-[#0f172a] text-sm font-bold py-2.5 px-6 m-5 rounded-xl uppercase tracking-wider transition-all shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 flex items-center justify-center whitespace-nowrap border border-gray-100"
                             >
                                 Logout
                             </button>
@@ -139,7 +139,7 @@ const Dashboard = () => {
                 {/* Animated Container for Content */}
                 <div className={`w-full max-w-6xl transition-all duration-700 ease-out flex flex-col items-center justify-center ${searchResults.length > 0 ? 'py-12 justify-start' : 'flex-grow justify-center'}`}>
 
-                    <div className="text-center mb-12 w-full animate-fade-in relative">
+                    <div className="text-center mb-14 w-full animate-fade-in relative">
                         <h2 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter drop-shadow-2xl">
                             Where to next?
                         </h2>
@@ -174,7 +174,7 @@ const Dashboard = () => {
 
                                 {/* Swap Icon */}
                                 <div className="hidden md:flex items-center justify-center pt-8 z-20">
-                                    <div className="w-20 h-20 rounded-full bg-[#3b82f6] border-4 border-[#0f172a] text-white flex items-center justify-center text-3xl hover:bg-[#2563eb] hover:scale-110 hover:shadow-2xl transition-all duration-300 cursor-pointer shadow-xl -mx-10 z-30">
+                                    <div className="w-18 h-18 rounded-full bg-[#3b82f6] border-4 border-[#0f172a] text-white flex items-center justify-center text-3xl hover:bg-[#2563eb] hover:scale-110 hover:shadow-2xl transition-all duration-300 cursor-pointer shadow-xl -mx-10 z-30">
                                         ⇄
                                     </div>
                                 </div>

@@ -15,7 +15,8 @@ export const validateFlightSearch = (req, res, next) => {
 };
 
 export const validateBooking = (req, res, next) => {
-    const { user_id, passenger_name, flight_id } = req.body;
+    const {passenger_name, flight_id } = req.body;
+    const user_id = req.user?.id || req.user?.user_id;
 
     if (!user_id || !passenger_name || !flight_id) {
         throw new AppError('user_id, passenger_name, and flight_id are required', 400);

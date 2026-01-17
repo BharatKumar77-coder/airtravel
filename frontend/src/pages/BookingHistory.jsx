@@ -24,8 +24,14 @@ const BookingHistory = () => {
 
         try {
             const response = await getBookingHistory();
-            setBookings(response.data);
+
+            if (response.data.success && response.data.data) {
+                setBookings(response.data.data); 
+            } else {
+                setBookings([]); 
+            }
         } catch (err) {
+            console.error('Booking history error:', err); 
             setError(err.response?.data?.error || 'Failed to load booking history');
         } finally {
             setLoading(false);

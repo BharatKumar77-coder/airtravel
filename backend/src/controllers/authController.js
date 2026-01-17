@@ -13,7 +13,6 @@ const generateToken = (id) => {
 
 // @desc    Register new user
 // @route   POST /api/auth/register
-// @access  Public
 export const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -66,7 +65,6 @@ export const register = async (req, res) => {
 
 // @desc    Authenticate a user
 // @route   POST /api/auth/login
-// @access  Public
 export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
